@@ -1,18 +1,18 @@
 #
 # Conditional build:
 %bcond_with	tests		# build with tests
-%define		kdeappsver	24.02.0
+%define		kdeappsver	24.02.1
 %define		kframever	5.94.0
 %define		qtver		5.15.2
 %define		kaname		knights
 Summary:	knights
 Name:		ka6-%{kaname}
-Version:	24.02.0
+Version:	24.02.1
 Release:	1
 License:	GPL v2+/LGPL v2.1+
 Group:		X11/Applications/Games
 Source0:	https://download.kde.org/stable/release-service/%{kdeappsver}/src/%{kaname}-%{version}.tar.xz
-# Source0-md5:	ab83b1ae63528dfefc06b76717aac7d4
+# Source0-md5:	8ac453bf6fb43cb7ab9530166a1f53da
 URL:		http://www.kde.org/
 BuildRequires:	Qt6Concurrent-devel
 BuildRequires:	Qt6Core-devel >= %{qtver}
@@ -34,6 +34,7 @@ BuildRequires:	kf6-kplotting-devel >= %{kframever}
 BuildRequires:	kf6-ktextwidgets-devel >= %{kframever}
 BuildRequires:	kf6-kwallet-devel >= %{kframever}
 BuildRequires:	kf6-kxmlgui-devel >= %{kframever}
+BuildRequires:	kp6-libplasma-devel
 BuildRequires:	ninja
 BuildRequires:	qt6-build >= %{qtver}
 BuildRequires:	rpmbuild(macros) >= 1.164
