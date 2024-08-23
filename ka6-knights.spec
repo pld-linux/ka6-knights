@@ -1,18 +1,18 @@
 #
 # Conditional build:
 %bcond_with	tests		# build with tests
-%define		kdeappsver	24.05.2
+%define		kdeappsver	24.08.0
 %define		kframever	5.94.0
 %define		qtver		5.15.2
 %define		kaname		knights
 Summary:	knights
 Name:		ka6-%{kaname}
-Version:	24.05.2
+Version:	24.08.0
 Release:	1
 License:	GPL v2+/LGPL v2.1+
 Group:		X11/Applications/Games
 Source0:	https://download.kde.org/stable/release-service/%{kdeappsver}/src/%{kaname}-%{version}.tar.xz
-# Source0-md5:	1e71afa5bc05f0bdf997b96b58a7cc9a
+# Source0-md5:	d4d5875a5f76a3434e94f6c80269dcd3
 URL:		http://www.kde.org/
 BuildRequires:	Qt6Concurrent-devel
 BuildRequires:	Qt6Core-devel >= %{qtver}
@@ -89,3 +89,4 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/metainfo/org.kde.knights.appdata.xml
 %{_datadir}/qlogging-categories6/knights.categories
 %{_datadir}/knsrcfiles/knights.knsrc
+%{_datadir}/qlogging-categories6/knights.renamecategories
