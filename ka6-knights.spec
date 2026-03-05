@@ -1,18 +1,18 @@
 #
 # Conditional build:
 %bcond_with	tests		# build with tests
-%define		kdeappsver	25.12.2
+%define		kdeappsver	25.12.3
 %define		kframever	5.94.0
 %define		qtver		5.15.2
 %define		kaname		knights
 Summary:	knights
 Name:		ka6-%{kaname}
-Version:	25.12.2
+Version:	25.12.3
 Release:	1
 License:	GPL v2+/LGPL v2.1+
 Group:		X11/Applications/Games
 Source0:	https://download.kde.org/stable/release-service/%{kdeappsver}/src/%{kaname}-%{version}.tar.xz
-# Source0-md5:	31be0d3b0f48cd9332364955fa70e415
+# Source0-md5:	d55d7395b42cda490e84c70636baeecc
 URL:		http://www.kde.org/
 BuildRequires:	Qt6Concurrent-devel
 BuildRequires:	Qt6Core-devel >= %{qtver}
@@ -41,7 +41,7 @@ BuildRequires:	rpmbuild(macros) >= 1.164
 BuildRequires:	shared-mime-info
 BuildRequires:	tar >= 1:1.22
 BuildRequires:	xz
-Requires(post,postun):	desktop-file-utils
+Requires:	%{name}-data = %{version}-%{release}
 %requires_eq_to Qt6Core Qt6Core-devel
 Obsoletes:	ka5-%{kaname} < %{version}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -53,6 +53,20 @@ opponent by checkmating their king.
 %description -l pl.UTF-8
 KNights to gra w szachy. Celem gracza jest dać mata królowi
 przeciwnika.
+
+%package data
+Summary:	Data files for %{kaname}
+Summary(pl.UTF-8):	Dane dla %{kaname}
+Group:		X11/Applications
+Requires(post,postun):	desktop-file-utils
+Obsoletes:	ka5-%{kaname}-data < 24.12.0
+BuildArch:	noarch
+
+%description data
+Data files for %{kaname}.
+
+%description data -l pl.UTF-8
+Dane dla %{kaname}.
 
 %prep
 %setup -q -n %{kaname}-%{version}
@@ -80,15 +94,18 @@ rm -rf $RPM_BUILD_ROOT
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%post
+%post data
 %update_desktop_database_post
 
-%postun
+%postun data
 %update_desktop_database_postun
 
-%files -f %{kaname}.lang
+%files
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/knights
+
+%files data -f %{kaname}.lang
+%defattr(644,root,root,755)
 %{_desktopdir}/org.kde.knights.desktop
 %{_datadir}/config.kcfg/knights.kcfg
 %{_datadir}/dbus-1/interfaces/org.kde.Knights.xml
